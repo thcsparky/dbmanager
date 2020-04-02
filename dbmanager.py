@@ -22,8 +22,9 @@ class dbjs:
         except Exception as ono:
             print(ono)
             print ('\n')
-            self.dbjson = {}
-            self.dbcount = len(self.dbjson)
+
+
+
 
     def SaveAll(self):
         fz = open(self.dbfile, 'w')
@@ -47,7 +48,7 @@ class dbjs:
             return('Deleted: ' + str)
         except:
             return('Probably nothing found')
-            
+
     def RemAt(self, str):
         if len(self.dbjson) > 0:
             for key, value in self.dbjson:
@@ -65,10 +66,11 @@ class dbjs:
 
     def WriteContent(self, new):
     # IDEA:
-        if new is dict:
+        if type(new) is dict:
             self.dbjson = new
             return('Set in memory. Warning: using a write command will replace your previous data entirely!\n')
         else:
+            print('subtype: '  + str(type(new)) + '\n')
             return('Pass a dictionary only.\n')
 
     def ReadCurrent(self):
@@ -78,4 +80,5 @@ class dbjs:
         if len(self.dbjson) > 0:
             return(self.dbjson)
         else:
-            return({})
+            self.dbjson ={}
+            return(self.dbjson)
